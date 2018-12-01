@@ -11,7 +11,7 @@ class FilterInput extends Component {
   createOptions(values) {
     if (!values) return '';
 
-    let items = [];
+    let items = [<option key="empty" value="" />];
     for (let value of values) {
       items.push(
         <option key={value} value={value}>
@@ -29,7 +29,7 @@ class FilterInput extends Component {
   render() {
     return (
       <div className="FilterInput">
-        <select>{this.createOptions(this.state.values)}</select>
+        <select name={this.props.name} onChange={this.props.onFilterChange}>{this.createOptions(this.state.values)}</select>
       </div>
     );
   }

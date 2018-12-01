@@ -6,8 +6,12 @@ class Filters extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputs: {},
+      inputs: {}
     };
+  }
+
+  getFilterInputValues(inputLabel) {
+    return this.state.inputs.inputsFilter ? this.state.inputs.inputsFilter[inputLabel] : [];
   }
 
   componentDidMount() {
@@ -31,9 +35,9 @@ class Filters extends Component {
   render() {
     return (
       <div className="Filters">
-        <FilterInput values={this.state.inputs.inputsFilter ? this.state.inputs.inputsFilter.compTerit : []} />
-        <FilterInput values={this.state.inputs.inputsFilter ? this.state.inputs.inputsFilter.specialite : []} />
-        <FilterInput values={this.state.inputs.inputsFilter ? this.state.inputs.inputsFilter.domaine : []} />
+        <FilterInput values={this.getFilterInputValues('compTerit')} name="compTerit" onFilterChange={this.props.onFilterChange} />
+        <FilterInput values={this.getFilterInputValues('specialite')} name="specialite" onFilterChange={this.props.onFilterChange} />
+        <FilterInput values={this.getFilterInputValues('domaine')} name="domaine" onFilterChange={this.props.onFilterChange} />
         <FilterButton />
       </div>
     );
