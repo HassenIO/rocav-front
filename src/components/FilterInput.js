@@ -29,7 +29,9 @@ class FilterInput extends Component {
   render() {
     return (
       <div className="FilterInput">
-        <select name={this.props.name} onChange={this.props.onFilterChange}>{this.createOptions(this.state.values)}</select>
+        <select name={this.props.name} onChange={this.props.onFilterChange}>
+          {this.createOptions(this.state.values)}
+        </select>
       </div>
     );
   }

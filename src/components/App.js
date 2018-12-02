@@ -9,13 +9,13 @@ class App extends Component {
     this.state = {
       compTerit: '',
       specialite: '',
-      domaine: ''
-    }
+      domaine: '',
+    };
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
   handleFilterChange(e) {
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
