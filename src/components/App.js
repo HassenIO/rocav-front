@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   handleFilterChange(e) {
-    console.log(`${e.target.name} changed to ${e.target.value}`);
     this.setState({[e.target.name]: e.target.value});
   }
 
@@ -23,7 +22,7 @@ class App extends Component {
     return (
       <div className="App">
         <Filters onFilterChange={this.handleFilterChange} />
-        <Reco />
+        <Reco filters={this.state} />
       </div>
     );
   }
