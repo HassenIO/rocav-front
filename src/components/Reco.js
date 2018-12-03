@@ -52,7 +52,7 @@ class Reco extends Component {
         accessor: 'Critères',
       },
       {
-        Header: 'Nb Missions',
+        Header: `Nb Missions ${this.state.filters.domaine || ''}`,
         accessor: `nb_missions_${this.state.filters.domaine}`,
       },
     ];

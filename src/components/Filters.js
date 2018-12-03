@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import FilterInput from './FilterInput';
+import './Filters.css';
 
 class Filters extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputs: {},
+      inputs: {}
     };
   }
 
@@ -22,7 +23,7 @@ class Filters extends Component {
       .then(
         result => {
           this.setState({
-            inputs: result,
+            inputs: result
           });
         },
         // Note: it's important to handle errors here
@@ -30,14 +31,14 @@ class Filters extends Component {
         // exceptions from actual bugs in components.
         error => {
           console.log(error);
-        },
+        }
       );
   }
 
   render() {
     return (
       <div className="Filters">
-        <Grid container justify="center">
+        <Grid container justify="flex-start">
           <Grid key="compTerit" item xs={4}>
             <FilterInput
               values={this.getFilterInputValues('compTerit')}
