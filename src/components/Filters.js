@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
 import FilterInput from './FilterInput';
 
 class Filters extends Component {
@@ -36,21 +37,32 @@ class Filters extends Component {
   render() {
     return (
       <div className="Filters">
-        <FilterInput
-          values={this.getFilterInputValues('compTerit')}
-          name="compTerit"
-          onFilterChange={this.props.onFilterChange}
-        />
-        <FilterInput
-          values={this.getFilterInputValues('specialite')}
-          name="specialite"
-          onFilterChange={this.props.onFilterChange}
-        />
-        <FilterInput
-          values={this.getFilterInputValues('domaine')}
-          name="domaine"
-          onFilterChange={this.props.onFilterChange}
-        />
+        <Grid container justify="center">
+          <Grid key="compTerit" item xs={4}>
+            <FilterInput
+              values={this.getFilterInputValues('compTerit')}
+              name="compTerit"
+              label="Compétance Territoriale"
+              onFilterChange={this.props.onFilterChange}
+            />
+          </Grid>
+          <Grid key="specialite" item xs={4}>
+            <FilterInput
+              values={this.getFilterInputValues('specialite')}
+              name="specialite"
+              label="Spécialité"
+              onFilterChange={this.props.onFilterChange}
+            />
+          </Grid>
+          <Grid key="domaine" item xs={4}>
+            <FilterInput
+              values={this.getFilterInputValues('domaine')}
+              name="domaine"
+              label="Domaine"
+              onFilterChange={this.props.onFilterChange}
+            />
+          </Grid>
+        </Grid>
       </div>
     );
   }
