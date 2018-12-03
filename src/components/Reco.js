@@ -8,6 +8,7 @@ class Reco extends Component {
     this.state = {
       filters: {},
       reco: [],
+      recoTable: [],
     };
   }
 
@@ -22,9 +23,22 @@ class Reco extends Component {
     )
       .then(res => res.json())
       .then(res => {
-        console.log(res);
-        self.setState({ reco: res });
+        self.setState({
+          reco: res,
+          recoTable: this.buildRecoTable(res),
+        });
       });
+  }
+
+  buildRecoTable(reco) {
+    return reco.map(r => {
+			const nbMissions = r[`nb_missions_${this.state.filters.domaine}`];
+      return {
+        AvocatId: r.AvocatId,
+        Critères: `${Math.floor(r.Critères * 100)} %`,
+				nb_missions: nbMissions === 0 ? '-' : nbMissions,
+      };
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,20 +60,26 @@ class Reco extends Component {
       {
         Header: 'Avocat',
         accessor: 'AvocatId',
+        headerStyle: { textAlign: 'left' },
+        style: { textAlign: 'left' },
       },
       {
         Header: 'Critères',
         accessor: 'Critères',
+        headerStyle: { textAlign: 'left' },
+        style: { textAlign: 'left' },
       },
       {
-        Header: `Nb Missions ${this.state.filters.domaine || ''}`,
-        accessor: `nb_missions_${this.state.filters.domaine}`,
+        Header: `Nb Missions "${this.state.filters.domaine || ''}"`,
+        accessor: 'nb_missions',
+        headerStyle: { textAlign: 'left' },
+        style: { textAlign: 'left' },
       },
     ];
 
     return (
       <div className="Reco">
-        <ReactTable columns={columns} data={this.state.reco} />
+        <ReactTable columns={columns} data={this.state.recoTable} />
       </div>
     );
   }
