@@ -32,11 +32,13 @@ class Reco extends Component {
 
   buildRecoTable(reco) {
     return reco.map(r => {
-			const nbMissions = r[`nb_missions_${this.state.filters.domaine}`];
+      const nbMissions = r[`nb_missions_${this.state.filters.domaine}`];
       return {
         AvocatId: r.AvocatId,
         Critères: `${Math.floor(r.Critères * 100)} %`,
-				nb_missions: nbMissions === 0 ? '-' : nbMissions,
+        nb_missions: nbMissions === 0 ? '-' : nbMissions,
+        partenariat: r.Partenaire === 'Y' ? 'Partenaire' : 'Non partenaire',
+        cout: `${Math.floor(r.Côut * 100) / 100.0} €`,
       };
     });
   }
@@ -72,6 +74,18 @@ class Reco extends Component {
       {
         Header: `Nb Missions "${this.state.filters.domaine || ''}"`,
         accessor: 'nb_missions',
+        headerStyle: { textAlign: 'left' },
+        style: { textAlign: 'left' },
+      },
+      {
+        Header: 'Partenariat',
+        accessor: 'partenariat',
+        headerStyle: { textAlign: 'left' },
+        style: { textAlign: 'left' },
+      },
+      {
+        Header: 'Coût',
+        accessor: 'cout',
         headerStyle: { textAlign: 'left' },
         style: { textAlign: 'left' },
       },
