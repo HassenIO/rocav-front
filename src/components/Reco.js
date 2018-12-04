@@ -43,7 +43,7 @@ class Reco extends Component {
         ) : (
           <em className="avocat-id">{r.AvocatId}</em>
         ),
-        Critères: `${Math.floor(r.Critères * 100)} %`,
+        Critères: Math.floor(r.Critères * 100),
         nb_missions: nbMissions === 0 ? '-' : nbMissions,
         partenariat:
           r.Partenaire === 'Y' ? (
@@ -79,7 +79,7 @@ class Reco extends Component {
         style: { textAlign: 'left' },
       },
       {
-        Header: 'Critères',
+        Header: 'Score',
         accessor: 'Critères',
         headerStyle: { textAlign: 'left' },
         style: { textAlign: 'left' },
