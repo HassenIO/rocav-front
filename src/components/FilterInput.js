@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import './FilterInput.css';
@@ -10,7 +10,7 @@ const styles = theme => ({
   },
 });
 
-class FilterInput extends Component {
+class FilterInput extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

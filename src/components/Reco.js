@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import './Reco.css';
 
 class Reco extends Component {
   constructor(props) {
@@ -34,10 +35,10 @@ class Reco extends Component {
     return reco.map(r => {
       const nbMissions = r[`nb_missions_${this.state.filters.domaine}`];
       return {
-        AvocatId: r.AvocatId,
+        AvocatId: r.nameAvocat ? (<span className="avocat-name">{r.nameAvocat}</span>) : (<em className="avocat-id">{r.AvocatId}</em>),
         Critères: `${Math.floor(r.Critères * 100)} %`,
         nb_missions: nbMissions === 0 ? '-' : nbMissions,
-        partenariat: r.Partenaire === 'Y' ? 'Partenaire' : 'Non partenaire',
+        partenariat: r.Partenaire === 'Y' ? 'Partenaire' : (<span className="not-partner">Non partenaire</span>),
         cout: `${Math.floor(r.Côut * 100) / 100.0} €`,
       };
     });
@@ -84,7 +85,7 @@ class Reco extends Component {
         style: { textAlign: 'left' },
       },
       {
-        Header: 'Coût',
+        Header: 'Coût moyen',
         accessor: 'cout',
         headerStyle: { textAlign: 'left' },
         style: { textAlign: 'left' },
